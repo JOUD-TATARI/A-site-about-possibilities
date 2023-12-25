@@ -26,7 +26,8 @@ let DoneNumber=document.querySelector(".next-number");
     clone_Solve.style.width="160px";
 
 main_input.onclick=function()
-{
+{   
+    document.querySelector(".Hint-place-solve").style.display="none";
     document.querySelector(".Sample").innerHTML="Sample Space";
     document.querySelector(".Sample").style.color="black";
     document.querySelector(".Sample").style.backgroundColor="#f9f9f9";

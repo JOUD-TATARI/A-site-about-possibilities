@@ -327,6 +327,10 @@ body {
     margin-top: 24px;
     align-items: center;
 }
+.footer-items
+{
+        margin-top: 80px;
+}
 /* ----------------------------------------------------- */
 @media screen and (min-width:250px) and (max-width:858px) {
    /* --------------------------------------- */
@@ -346,7 +350,7 @@ body {
     .The-solve span {
         display: block;
         font-size: 17px;
-        margin-top: -40px;
+        margin-top: -50px;
         /* left: 11%; */
     }
 
@@ -422,7 +426,8 @@ body {
         width: 140px;
     }
     .Hint-place-solve {
-        right: 0%;
+        right: -1%;
+        top: 40%;
     }
 
     .Hint-place-sample {
@@ -446,7 +451,27 @@ body {
         .select {
             width: 350px;
         }
+        .Hint-place-solve {
+        right: 0%;
+        top: 30%;
+    }
 
+}
+@media screen and (min-width:859px) and (max-width:1520px)
+{
+.The-solve span 
+{
+     font-size: 30px;
+    margin-top: -100px;
+}
+}
+@media screen and (min-width:550px) 
+{
+    .Hint-place-solve
+    {
+        right: 0%;
+        top: 40%;
+    }
 }
 
 

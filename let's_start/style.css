@@ -1,21 +1,23 @@
 body {
     font-family: 'Cairo', sans-serif;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     background-color: rgb(242, 247, 251);
     /* position: relative; */
 }
+
 :root {
     --element-color: #C186F8;
     --body-color: #F9F9F9;
     --write-color: #1a1a1a;
-    --border-color: #D731E8;;
+    --border-color: #D731E8;
+    ;
 }
 
 
 .containerS {
-    width: 85%; 
+    width: 85%;
     margin: auto;
-} 
+}
 
 .container-left1 {
     margin-left: 20%;
@@ -39,7 +41,7 @@ body {
 
 .The-solve span {
     position: absolute;
-   color: #1A1A1A40;
+    color: #1A1A1A40;
     /* top: -9px;
     left: 110px; */
     display: flex;
@@ -64,19 +66,19 @@ body {
     bottom: 0;
     right: 0;
 }
-.about:hover
-{
+
+.about:hover {
     opacity: 1;
 }
-.note
-{
+
+.note {
     text-align: center;
     font-size: 20px;
     margin-top: 20px;
     color: #181c71
 }
-.solve-head
-{
+
+.solve-head {
     margin-top: 24px;
     color: #1B1B1B;
     font-size: 51px;
@@ -86,37 +88,38 @@ body {
     letter-spacing: 1px;
     position: relative;
 }
-.Hint
-{
+
+.Hint {
     border-radius: 24px;
     width: 181px;
     background-color: #D731E8;
     z-index: 1;
 }
-.Hint-place-solve
-{
+
+.Hint-place-solve {
     position: absolute;
     top: 45%;
     right: -10%;
     margin-left: 50px;
-    height: 282px;
+    height: 280px;
+    /* width: 200px; */
     /* display: none; */
 }
-.Hint-img 
-{
+
+.Hint-img {
     position: absolute;
     /* transform: rotate(-90deg); */
     flex-shrink: 0;
     left: -33px;
     top: 19px;
 }
-.Hint-content
-{
+
+.Hint-content {
     padding: 16px 24px;
     position: relative;
 }
-.Hint-content p
-{
+
+.Hint-content p {
     padding-bottom: 29px;
     color: #FFF;
     font-family: Roboto;
@@ -125,8 +128,8 @@ body {
     line-height: 25px;
     letter-spacing: -0.36px;
 }
-.Hint-content-a
-{
+
+.Hint-content-a {
     display: flex;
     justify-content: space-between;
     font-family: Roboto;
@@ -134,14 +137,13 @@ body {
     font-weight: 500;
     letter-spacing: -0.36px;
 }
-.Hint-content-a a
-{
+
+.Hint-content-a a {
     color: #FFF;
 }
 
 /* --------------------------------------- */
-.Note
-{
+.Note {
     margin-top: 36px;
     color: #D731E8;
     font-size: 20px;
@@ -170,16 +172,17 @@ body {
     border: 4px solid var(--border-color);
     position: relative;
 }
-.Hint-place-sample
-{
+
+.Hint-place-sample {
     height: 379px;
     position: absolute;
     top: 0;
     right: 50%;
     display: none;
 }
+
 .main span {
-    color: #1A1A1A40;   
+    color: #1A1A1A40;
     position: absolute;
     left: 0;
     top: 10px;
@@ -216,13 +219,12 @@ body {
 .after-next-number-item1 {
     width: 450px;
 }
-.Hint-place-next-number
-{
+
+.Hint-place-next-number {
     position: absolute;
     top: -25%;
     right: 0;
     display: none;
-
 }
 
 .complete-operation {
@@ -272,14 +274,14 @@ body {
     font-weight: 400;
 }
 
-.select select .operation-3
- {
+.select select .operation-3 {
     color: #313EE8;
 }
-.obtgroup-3
-{
-   color: #D731E8;
+
+.obtgroup-3 {
+    color: #D731E8;
 }
+
 .obtgroup-3 .option-padding {
     color: var(--write-color);
 }
@@ -304,12 +306,12 @@ body {
     margin-left: 30%;
     margin-top: 25px;
 }
-.Hint-place-next-number1
-{
+
+.Hint-place-next-number1 {
     position: absolute;
     top: 5%;
-   left: 53%;
-   display: none;
+    left: 53%;
+    display: none;
 }
 
 /* --------------------------------------- */
@@ -327,20 +329,22 @@ body {
     margin-top: 24px;
     align-items: center;
 }
-.footer-items
-{
-        margin-top: 80px;
+
+.footer-items {
+    margin-top: 80px;
 }
+
 /* ----------------------------------------------------- */
 @media screen and (min-width:250px) and (max-width:858px) {
-   /* --------------------------------------- */
+
+    /* --------------------------------------- */
     .The-solve {
         height: 100px;
         font-size: 25px;
         border-radius: 30px;
         width: 100%;
         margin-left: 0%;
-}
+    }
 
     .The-solve .vector1,
     .The-solve .vector2 {
@@ -361,27 +365,33 @@ body {
     .Hint-place-solve {
         right: -20%;
     }
+
     .containerS {
         width: 100%;
     }
+
     .container {
         width: 90%;
         margin: auto;
         padding-right: 10%;
     }
+
     .container-left {
         width: 90%;
         margin-left: 5%;
         margin-right: 5%;
 
     }
+
     .container-left1 {
         margin-left: 5%;
         margin-right: 5%;
     }
+
     .enter-number-of-main-set {
         width: 90%;
     }
+
     .next-number,
     .next-number-1 {
         margin-left: 25%;
@@ -399,21 +409,23 @@ body {
     }
 
     .complete-operation {
-        width: 90%;        
+        width: 90%;
         font-size: 17px;
         line-height: 1.5;
     }
-        /* .select {
+
+    /* .select {
             width: 400px;
         } */
     .DivCurrentMatrix .ok-curent-matrix {
         margin-left: 28%;
     }
-    .main span 
-    {
+
+    .main span {
         font-size: 17px;
 
     }
+
     .Hint-place-next-number {
         top: 50%;
         left: 60%;
@@ -425,6 +437,7 @@ body {
         left: 65%;
         width: 140px;
     }
+
     .Hint-place-solve {
         right: -1%;
         top: 40%;
@@ -435,44 +448,41 @@ body {
         width: 155px;
         height: 470px;
     }
+
     .Note {
         font-size: 18px;
         text-align: center;
         line-height: 1.5;
     }
-    
+
 }
 
-@media screen and (min-width:550px) and (max-width:920px)
-{
-        .container-left1 {
-            margin-left: 20%;
-        }
-        .select {
-            width: 350px;
-        }
-        .Hint-place-solve {
+@media screen and (min-width:550px) and (max-width:920px) {
+    .container-left1 {
+        margin-left: 20%;
+    }
+
+    .select {
+        width: 350px;
+    }
+
+    .Hint-place-solve {
         right: 0%;
         top: 30%;
     }
 
 }
-@media screen and (min-width:859px) and (max-width:1520px)
-{
-.The-solve span 
-{
-     font-size: 30px;
-    margin-top: -100px;
+
+@media screen and (min-width:859px) and (max-width:1520px) {
+    .The-solve span {
+        font-size: 30px;
+        margin-top: -100px;
+    }
 }
-}
-@media screen and (min-width:550px) 
-{
-    .Hint-place-solve
-    {
+
+@media screen and (min-width:550px) {
+    .Hint-place-solve {
         right: 0%;
         top: 40%;
     }
 }
-
-
-

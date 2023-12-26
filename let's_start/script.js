@@ -2,10 +2,13 @@ let mainSetIMG = [];
 let mainSet = [];
 let partialGroup=[];
 let group=[];
+let groupResult=[];
 let freq=[];
+let freqComplement=[];
 let without_complement=[];
 let Solve=[];
 let difference=[];
+let skip=0;
 let sum=0;
 let negative=0;
 let countForMatrix=0;
@@ -26,8 +29,7 @@ let DoneNumber=document.querySelector(".next-number");
     clone_Solve.style.width="160px";
 
 main_input.onclick=function()
-{   
-    document.querySelector(".Hint-place-solve").style.display="none";
+{   document.querySelector(".Hint-place-solve").style.display="none";
     document.querySelector(".Sample").innerHTML="Sample Space";
     document.querySelector(".Sample").style.color="black";
     document.querySelector(".Sample").style.backgroundColor="#f9f9f9";
@@ -64,12 +66,21 @@ let Hint_placeNextNumber=document.querySelector(".Hint-place-next-number");
 let Hint_placeNextNumber1=document.querySelector(".Hint-place-next-number1");
 
 
+
+
+Hint_placeNextNumber.style.display="none"
+
+
 document.querySelector(".NextSolve").onclick=function(){
     Hint_placeSample.style.display="block";
     Hint_placeSolve.style.display="none";
 }
 document.querySelector(".SkipSolve").onclick=function(){
         Hint_placeSolve.style.display="none";
+        Hint_placeSample.style.display="none";
+        Hint_placeNextNumber.style.display="none";
+        Hint_placeNextNumber1.style.display="none";
+        skip++;
         console.log(scrollY)
 }
 document.querySelector(".Hint-place-next-number .Next").onclick=function()
@@ -80,11 +91,6 @@ document.querySelector(".Hint-place-next-number .Next").onclick=function()
         document.querySelector(".Hint-place-next-number p").innerHTML="";
         document.querySelector(".Hint-place-next-number p").innerHTML="You must choose a process from among these processes to be among the partial groups that you will enter later";
         document.querySelector(".Hint-place-next-number .Hint-img").innerHTML="";
-        // document.querySelector(".Hint-place-next-number .Hint-img img").textContent=
-
-
-;
-
         Hint_placeNextNumber.style.backgroundColor="red";
     }
     else
@@ -92,21 +98,21 @@ document.querySelector(".Hint-place-next-number .Next").onclick=function()
        Hint_placeNextNumber1.style.display="block";
        Hint_placeNextNumber.style.display="none";
        document.querySelector(".select select").style.border="4px solid #D731E8";
-
     }
+
+    
 }
 document.querySelector(".Hint-place-next-number .Skip").onclick=function()
 {
     Hint_placeNextNumber.style.display="none";
     Hint_placeNextNumber1.style.display="block";
     document.querySelector(".select select").style.border="4px solid #D731E8";
-
-
 }
 
 
 document.querySelector(".Hint-place-next-number1 .Next").onclick=function()
 {
+    skip=0;
     if (valueSelect===0)
     {
         Hint_placeNextNumber.style.display="block"
@@ -155,6 +161,7 @@ document.querySelector(".Hint-place-next-number1 .Next").onclick=function()
     else{
     btn.innerHTML="OK";
     countOk++;
+    groupResult=[];
     for(let i=0;i<curent_Matrics.value.length;i++){
     partialGroup[i]=0;
     }
@@ -176,26 +183,64 @@ document.querySelector(".Hint-place-next-number1 .Next").onclick=function()
                 r+= partialGroup[j];
             }
                 group[x]=r;
-                if (valueSelect==4 && matrics==1)
-                {
-                    difference[group[x]]++;
-                }
-                freq[group[x]]++;
-                if ((matrics===1 &&valueSelect===312)  || (matrics===1 &&(valueSelect===322)))
-                {
-                    without_complement[group[x]]++;
-                    freq[group[x]]--;
-                }
+                if (!groupResult.includes(group[x]))
+                groupResult.push(group[x])
                 x++;
                 count=0;
                 r="";
         }
     }
-    console.log(group);
-    console.log(freq);
-    console.log(without_complement)
+    for (let i=0;i<groupResult.length;i++)
+    {
+        freq[groupResult[i]]++;
+        freqComplement[groupResult[i]]++;
+               if (valueSelect==4 && matrics==1)
+                {
+                    difference[groupResult[i]]++;
+                }
+                 if (matrics===1 )
+                {
+                    without_complement[groupResult[i]]++;
+                    freqComplement[groupResult[i]]--;
+                }
+                if (!mainSet.includes(groupResult[i]))
+                {
+                    skip++;
+                }
+    }
+    if (skip!=0)
+    {
+
+        alert("You should not enter numbers outside the sample space")
+        curent_Matrics.style.border="4px solid red"
+        btn.innerHTML="OK?"
+        for (let i=0;i<groupResult.length;i++)
+        {
+            freq[groupResult[i]]--;
+            freqComplement[groupResult[i]]--;
+            if (valueSelect==4 && matrics==1)
+                {
+                    difference[groupResult[i]]--;
+                }
+                 if (matrics===1 )
+                {
+                    without_complement[groupResult[i]]--;
+                    freqComplement[groupResult[i]]--;
+                }
+        }
+    }
+    if (skip==0)
+    {
+        curent_Matrics.style.border="4px solid #D731E8";
+    }
+    console.log("groupresult="+groupResult)
+    console.log("group"+group);
+    console.log("freq"+freq);
+    console.log("withoutComplement"+without_complement)
+    console.log("freqComplement"+freqComplement)
     countForMatrix=1;
     space=0;
+    skip=0;
     for(let i=0;i<curent_Matrics.value.length;i++)
     {
         group[i]=0;
@@ -229,6 +274,7 @@ function NextSolve_main(main_input_val)
         document.querySelector(".Hint-place-sample .Hint-img").innerHTML="";
     }
     else{
+    Hint_placeSample.style.display="none"
     for(let i=0;i<main_input_val.length;i++)
     {
         mainSetIMG[i] = main_input_val[i];
@@ -259,13 +305,16 @@ function NextSolve_main(main_input_val)
             {
                 difference[mainSet[x]]=0;
             }
+            if(freqComplement[mainSet[x]]===undefined)
+            {
+                freqComplement[mainSet[x]]=0;
+            }
             x++;
             count=0;
             r="";
         }
     }
     document.querySelector(".Hint-place-next-number").style.display="block";
-    Hint_placeSample.style.display="none";
     document.querySelector(".select select").style.display="block";
     document.querySelector(".for-matrics").style.display="block";
     if (negative===0)
@@ -321,6 +370,10 @@ function main(main_input_val) {
             {
                 difference[mainSet[x]]=0;
             }
+            if(freqComplement[mainSet[x]]===undefined)
+            {
+                freqComplement[mainSet[x]]=0;
+            }
             x++;
             count=0;
             r="";
@@ -343,7 +396,7 @@ document.querySelector(".complete-operation").onclick=function(e)
     if(DoneNumber.innerHTML==="Done"){
     document.querySelector(".select select").style.display="block";
     document.querySelector(".for-matrics").style.display="block";
-    Hint_placeNextNumber.style.display="block";
+    // Hint_placeNextNumber.style.display="block";
 
     }
     else
@@ -355,6 +408,7 @@ document.querySelector(".complete-operation").onclick=function(e)
 
 document.querySelector(".next-number-1").onclick=function (e)
 {
+    skip=0;
     if (valueSelect===0)
     {
         e.preventDefault()
@@ -375,7 +429,6 @@ document.querySelector(".next-number-1").onclick=function (e)
     curent_Matrics.hasAttribute("type" , "text");
     curent_Matrics.className="curent-Matrics enter-number-of-main-set ";
     curent_Matrics.setAttribute("placeholder" , "Enter the elements of matrix"+ matrics);
-    // span_current_matrix.style.padding="0 10px";
 
     let btn=document.createElement("button");
     btn.className="ok-curent-matrix"
@@ -383,7 +436,6 @@ document.querySelector(".next-number-1").onclick=function (e)
     
 
     DivCurrentMatrix.appendChild(curent_Matrics);
-    // DivCurrentMatrix.appendChild(span_current_matrix);
     DivCurrentMatrix.appendChild(btn);
     if (matrics>1){
     DivCurrentMatrix.appendChild(clone_Solve);
@@ -400,6 +452,7 @@ document.querySelector(".next-number-1").onclick=function (e)
     else{
     btn.innerHTML="OK";
     countOk++;
+    groupResult=[];
     for(let i=0;i<curent_Matrics.value.length;i++){
     partialGroup[i]=0;
     }
@@ -421,26 +474,59 @@ document.querySelector(".next-number-1").onclick=function (e)
                 r+= partialGroup[j];
             }
                 group[x]=r;
-                if (valueSelect==4 && matrics==1)
-                {
-                    difference[group[x]]++;
-                }
-                freq[group[x]]++;
-                 if ((matrics===1 &&valueSelect===312)  || (matrics===1 &&(valueSelect===322)))
-                {
-                    without_complement[group[x]]++;
-                    freq[group[x]]--;
-                }
+                if (!groupResult.includes(group[x]))
+                groupResult.push(group[x])
                 x++;
                 count=0;
                 r="";
         }
     }
-    console.log(group);
-    console.log(freq);
-    console.log(without_complement)
+    for (let i=0;i<groupResult.length;i++)
+    {
+        freq[groupResult[i]]++;
+        freqComplement[groupResult[i]]++;
+               if (valueSelect==4 && matrics==1)
+                {
+                    difference[groupResult[i]]++;
+                }
+                 if (matrics===1 )
+                {
+                    without_complement[groupResult[i]]++;
+                    freqComplement[groupResult[i]]--;
+                }
+                if (!mainSet.includes(groupResult[i]))
+                {
+                    skip++;
+                }
+    }
+    if (skip!=0)
+    {
+
+        alert("You should not enter numbers outside the sample space")
+        curent_Matrics.style.border="4px solid red"
+        btn.innerHTML="OK?"
+        for (let i=0;i<groupResult.length;i++)
+        {
+            freq[groupResult[i]]--;
+            freqComplement[groupResult[i]]--;
+            if (valueSelect==4 && matrics==1)
+                {
+                    difference[groupResult[i]]--;
+                }
+                 if (matrics===1 )
+                {
+                    without_complement[groupResult[i]]--;
+                    freqComplement[groupResult[i]]--;
+                }
+        }
+    }
+    if (skip==0)
+    {
+        curent_Matrics.style.border="4px solid #D731E8";
+    }
     countForMatrix=1;
     space=0;
+    skip=0;
     for(let i=0;i<curent_Matrics.value.length;i++)
     {
         group[i]=0;
@@ -525,7 +611,7 @@ function getCloneSolve(event)
         Solve[sum]=mainSet[i];
             sum++;
     }
-    else if (valueSelect==322 &&( freq[mainSet[i]]>=1 || without_complement[mainSet[i]]===0))
+    else if (valueSelect==322 &&( freqComplement[mainSet[i]]>=1 || without_complement[mainSet[i]]===0 ))
     {
         Solve[sum]=mainSet[i];
             sum++;
